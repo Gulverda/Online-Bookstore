@@ -6,9 +6,36 @@ import { Book } from '../models/book.model';
 })
 export class BookService {
   private books: Book[] = [
-    { id: '1', title: 'Angular Basics', author: 'John Doe', price: 25, description: 'Learn Angular', releaseYear: 2022, category: 'Programming', imageUrl: '/assets/angular.png', rating: 4.5 },
-    { id: '2', title: 'React Essentials', author: 'Jane Smith', price: 30, description: 'Learn React', releaseYear: 2023, category: 'Programming', imageUrl: '/assets/react.png', rating: 4.8 },
+    {
+      id: '1',
+      title: 'Angular Basics',
+      author: 'John Doe',
+      price: 25,
+      description: 'Learn Angular',
+      releaseYear: 2022,
+      category: 'Programming',
+      imageUrl: '/assets/angular.png',
+      rating: 4.5,
+      similarBooks: [],
+      reviews: [],
+    },
+    {
+      id: '2',
+      title: 'React Essentials',
+      author: 'Jane Smith',
+      price: 30,
+      description: 'Learn React',
+      releaseYear: 2023,
+      category: 'Programming',
+      imageUrl: '/assets/react.png',
+      rating: 4.8,
+      similarBooks: [],
+      reviews: [],
+    },
+    // Add more books as needed...
   ];
+
+  private cart: Book[] = [];
 
   getBooks(): Book[] {
     return this.books;
@@ -18,18 +45,19 @@ export class BookService {
     return this.books.find((book) => book.id === id);
   }
 
-  private cart: any[] = []; // Add this property to your BookService
+  getSimilarBooks(category: string): Book[] {
+    return this.books.filter((book) => book.category === category);
+  }
 
-getCart() {
-  return [...this.cart]; // Return a copy of the cart to avoid accidental mutations
-}
+  getCart(): Book[] {
+    return [...this.cart];
+  }
 
-addToCart(book: any) {
-  this.cart.push(book);
-}
+  addToCart(book: Book): void {
+    this.cart.push(book);
+  }
 
-removeFromCart(id: number) {
-  this.cart = this.cart.filter((item) => item.id !== id);
-}
-
+  removeFromCart(id: string): void {
+    this.cart = this.cart.filter((book) => book.id !== id);
+  }
 }

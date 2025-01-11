@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
+import { Book } from '../../models/book.model'; // Ensure the model is imported
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartItems: any[] = [];
+  cartItems: Book[] = []; // Cart items will be of type Book
 
   constructor(private bookService: BookService) {}
 
@@ -19,13 +20,13 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
-  loadCart() {
-    this.cartItems = this.bookService.getCart();
+  loadCart(): void {
+    this.cartItems = this.bookService.getCart(); // Fetch the current cart items
   }
 
-  removeItem(id: number): void {
+  removeItem(id: string): void {
     if (confirm('Are you sure you want to remove this item from your cart?')) {
-      this.bookService.removeFromCart(id);
+      this.bookService.removeFromCart(id); // Remove the item by its ID
       this.loadCart(); // Refresh the cart items after removal
     }
   }

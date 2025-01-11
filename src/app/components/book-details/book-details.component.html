@@ -1,1 +1,15 @@
-<p>book-details works!</p>
+<div *ngIf="book">
+    <h2>{{ book.title }}</h2>
+    <p>{{ book.description }}</p>
+    <img [src]="book.imageUrl" alt="{{ book.title }} image" />
+  
+    <div *ngIf="similarBooks.length > 0">
+      <h3>Similar Books:</h3>
+      <ul>
+        <li *ngFor="let similarBook of similarBooks">
+          <a [routerLink]="['/book', similarBook.id]">{{ similarBook.title }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

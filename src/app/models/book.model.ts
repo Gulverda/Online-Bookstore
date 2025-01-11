@@ -8,5 +8,7 @@ export interface Book {
     category: string;
     imageUrl: string;
     rating: number;
+    similarBooks: Book[];  // Add similar books reference
+    reviews: string[];     // Array to store reviews
   }
   
