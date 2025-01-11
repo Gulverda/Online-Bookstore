@@ -1,1 +1,37 @@
-<p>home works!</p>
+<div class="home-container">
+    <!-- Author of the Week Section -->
+    <section class="author-section">
+      <h1>Eric-Emmanuel Schmitt</h1>
+      <div class="author-content">
+        <div class="author-info">
+          <p>Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes...</p>
+          <button class="view-books-btn">View His Books</button>
+        </div>
+        <img src="path/to/book-image.jpg" alt="Author's Book" />
+      </div>
+    </section>
+  
+    <!-- Features Section -->
+    <section class="features">
+      <div class="feature-item">Free shipping over $50</div>
+      <div class="feature-item">Save with loyalty points</div>
+      <div class="feature-item">Read a few pages</div>
+    </section>
+  
+    <!-- Book Listings -->
+    <section class="books-section">
+      <h2>Selected for You</h2>
+      <div class="books-list">
+        <div *ngFor="let book of books" class="book-card" (click)="viewDetails(+book.id)"> 
+            <img [src]="book.imageUrl" alt="book cover" class="book-image" />
+          <div class="book-info">
+            <h3>{{ book.title }}</h3>
+            <p>by {{ book.author }}</p>
+            <p>${{ book.price }}</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
