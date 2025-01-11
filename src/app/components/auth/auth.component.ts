@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';  // Import Router
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -16,9 +17,10 @@ export class AuthComponent {
   name = '';
   isLogin = true;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  toggleMode() {
+  toggleMode(event: Event) {
+    event.preventDefault();
     this.isLogin = !this.isLogin;
     this.resetFields();
   }
@@ -34,7 +36,12 @@ export class AuthComponent {
 
     if (this.isLogin) {
       const success = this.authService.login(trimmedEmail, trimmedPassword);
-      alert(success ? 'Login successful!' : 'Invalid credentials.');
+      if (success) {
+        alert('Login successful!');
+        this.router.navigate(['/']);  // Redirect to Home after login
+      } else {
+        alert('Invalid credentials.');
+      }
     } else {
       if (!this.name.trim()) {
         alert('Name is required for registration.');

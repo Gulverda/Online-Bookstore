@@ -1,41 +1,46 @@
 <nav class="navbar">
-    <a href="/">
-      <div class="navbar-left">
-        <img src="/assets/images/Logo.png" alt="Bookstore">
-        <!-- <span class="tagline">We love books</span> -->
-      </div>
-    </a>
-  
-    <!-- Burger menu for smaller screens -->
-    <button class="burger-menu" (click)="toggleMenu()">
-      <i class="material-icons">menu</i>
-    </button>
-  
-    <!-- Center Section -->
-    <div class="navbar-center" [class.show]="menuOpen">
-      <input
-        type="text"
-        placeholder="Type any book here"
-        class="search-input"
-      />
-      <button class="search-button">
-        <i class="material-icons">search</i>
-      </button>
+  <a href="/">
+    <div class="navbar-left">
+      <img src="/assets/images/Logo.png" alt="Bookstore">
     </div>
-  
-    <!-- Right Section -->
-    <div class="navbar-right" [class.show]="menuOpen">
-      <!-- <a href="#">Privacy policy</a>
-      <a href="#">Warranty</a>
-      <a href="#">Shipping</a>
-      <a href="#">Returns</a> -->
-      <a href="/cart">
-        <i class="material-icons cart-icon">shopping_cart</i>
-      </a>
+  </a>
+
+  <!-- Burger menu for smaller screens -->
+  <button class="burger-menu" (click)="toggleMenu()">
+    <i class="material-icons">menu</i>
+  </button>
+
+  <!-- Center Section -->
+  <div class="navbar-center" [class.show]="menuOpen">
+    <input
+      type="text"
+      placeholder="Type any book here"
+      class="search-input"
+    />
+    <button class="search-button">
+      <i class="material-icons">search</i>
+    </button>
+  </div>
+
+  <!-- Right Section -->
+  <div class="navbar-right" [class.show]="menuOpen">
+    <a href="/cart">
+      <i class="material-icons cart-icon">shopping_cart</i>
+    </a>
+
+    <ng-container *ngIf="authService.getCurrentUser(); else login">
+      <div class="logged-in">
+        <span>{{ authService.getCurrentUser()?.name }}</span>
+        <a href="/auth" (click)="logout()">
+          <i class="material-icons">exit_to_app</i>
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-template #login>
       <a href="/auth">
         <i class="material-icons user-icon">account_circle</i>
       </a>
-      <!-- <i class="material-icons favorite-icon">favorite</i> -->
-    </div>
-  </nav>
-  
+    </ng-template>
+  </div>
+</nav>
