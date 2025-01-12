@@ -1,14 +1,16 @@
 <nav class="navbar">
-  <a href="/">
-    <div class="navbar-left">
-      <img src="/assets/images/Logo.png" alt="Bookstore">
-    </div>
-  </a>
-
-  <!-- Burger menu for smaller screens -->
-  <button class="burger-menu" (click)="toggleMenu()">
-    <i class="material-icons">menu</i>
-  </button>
+  <div class="logo_burger">
+    <a href="/">
+      <div class="navbar-left">
+        <img src="/assets/images/Logo.png" alt="Bookstore">
+      </div>
+    </a>
+  
+    <!-- Burger menu for smaller screens -->
+    <button class="burger-menu" (click)="toggleMenu()">
+      <i class="material-icons">menu</i>
+    </button>
+  </div>
 
   <!-- Center Section -->
   <div class="navbar-center" [class.show]="menuOpen">

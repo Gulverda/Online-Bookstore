@@ -3,48 +3,46 @@
     margin: auto;
     padding: 20px;
     overflow: hidden;
-  }
-  
-  .left_side {
+}
+
+.left_side {
     display: flex;
     gap: 20px;
-  }
-  
-  .lines_for_slider_pagination {
+}
+
+.lines_for_slider_pagination {
     height: 100%;
     gap: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  
-  .line {
+}
+
+.line {
     height: 70px;
     width: 2px;
     background-color: lightgray;
     transition: background-color 0.3s;
-  }
-  
-  .line.active {
-    background-color: #937DC2;
-  }
-  
+}
 
-  
-  .slider-container {
+.line.active {
+    background-color: #937dc2;
+}
+
+.slider-container {
     display: flex;
     gap: 20px;
     transition: transform 0.5s ease;
-  }
-  
-  .slider-item {
+}
+
+.slider-item {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .add-to-cart-btn {
+}
+
+.add-to-cart-btn {
     background-color: #937dc2;
     max-width: 200px;
     margin-top: 20px;
@@ -56,44 +54,44 @@
     justify-content: center;
     gap: 10px;
     cursor: pointer;
-  }
-  
-  .book-image {
+}
+
+.book-image {
     width: 100%;
     max-width: 500px;
     height: 400px;
     border-radius: 5px;
-  }
-  
-  .book-details {
+}
+
+.book-details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-top: 10px;
-  }
-  
-  .book-title {
+}
+
+.book-title {
     font-size: 48px;
     max-width: 500px;
     font-weight: bold;
-  }
-  
-  .book-author {
+}
+
+.book-author {
     font-size: 14px;
     color: #666;
-  }
-  
-  .img_with_discount {
+}
+
+.img_with_discount {
     position: relative;
-  }
-  
-  .book-description {
+}
+
+.book-description {
     font-size: 16px;
     max-width: 500px;
     margin-top: 10px;
-  }
-  
-  .book-discount {
+}
+
+.book-discount {
     position: absolute;
     z-index: 1;
     top: 50px;
@@ -102,15 +100,15 @@
     font-size: 14px;
     color: #9c27b0;
     font-weight: bold;
-  }
-  
-  .navigation_button {
+}
+
+.navigation_button {
     display: flex;
     justify-content: center;
-  }
-  
-  .prev-btn,
-  .next-btn {
+}
+
+.prev-btn,
+.next-btn {
     background-color: #9c27b0;
     color: white;
     border: none;
@@ -119,51 +117,68 @@
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .prev-btn:hover,
-  .next-btn:hover {
+}
+
+.prev-btn:hover,
+.next-btn:hover {
     background-color: #7b1fa2;
-  }
-  
-  .prev-btn:disabled,
-  .next-btn:disabled {
+}
+
+.prev-btn:disabled,
+.next-btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
+    .book-title {
+        font-size: 36px;
+    }
     .slider-item {
-      flex-direction: column-reverse;
+        flex-direction: column-reverse;
     }
 
-    .book-discount{
+    .book-discount {
         position: relative;
         top: 0;
         left: 0;
         width: 100%;
     }
 
-    .left_side{
+    .left_side {
         flex-direction: column-reverse;
     }
 
-    .lines_for_slider_pagination{
+    .lines_for_slider_pagination {
         flex-direction: row;
     }
 
-    .line{
+    .line {
         height: 2px;
         width: 70px;
     }
-  
+
     .add-to-cart-btn {
-      width: 100%;
+        max-width: 100%;
+        width: 100%;
     }
-  
+
     .prev-btn,
     .next-btn {
-      display: none; /* Hide buttons for swipe functionality on mobile */
+        display: none; /* Hide buttons for swipe functionality on mobile */
     }
-  }
-  
+}
+
+@media screen and (max-width: 425px) {
+    .line {
+        width: 60px;
+    }
+
+    .book-title {
+        font-size: 24px;
+    }
+
+    .book-description {
+        font-size: 14px;
+    }
+}
