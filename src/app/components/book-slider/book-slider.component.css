@@ -136,6 +136,26 @@
     .slider-item {
       flex-direction: column-reverse;
     }
+
+    .book-discount{
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .left_side{
+        flex-direction: column-reverse;
+    }
+
+    .lines_for_slider_pagination{
+        flex-direction: row;
+    }
+
+    .line{
+        height: 2px;
+        width: 70px;
+    }
   
     .add-to-cart-btn {
       width: 100%;

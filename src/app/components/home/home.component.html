@@ -2,21 +2,29 @@
   <div class="home-container">
     <!-- Author of the Week Section -->
     <app-book-slider [books]="books"></app-book-slider>
-    
-  
+
     <!-- Features Section -->
     <section class="features">
-      <div class="feature-item">Free shipping over $50</div>
-      <div class="feature-item">Save with loyalty points</div>
-      <div class="feature-item">Read a few pages</div>
+      <div class="feature-item">
+        <img src="/assets/images/Truck.svg" alt="Truck">
+        Free shipping over $50
+      </div>
+      <div class="feature-item">
+        <img src="/assets/images/Star.svg" alt="Star">
+        Save with loyalty points
+      </div>
+      <div class="feature-item">
+        <img src="/assets/images/Book.svg" alt="Book">
+        Read a few pages
+      </div>
     </section>
-  
+
     <!-- Book Listings -->
     <section class="books-section">
       <h2 class="book_section_title">Selected for You</h2>
       <div class="books-list">
-        <div *ngFor="let book of books" class="book-card" (click)="viewDetails(+book.id)"> 
-            <img [src]="book.imageUrl" alt="book cover" class="book-image" />
+        <div *ngFor="let book of books" class="book-card" (click)="viewDetails(+book.id)">
+          <img [src]="book.imageUrl" alt="book cover" class="book-image" />
           <div class="book-info">
             <h3 class="title">{{ book.title }}</h3>
             <p class="author">by {{ book.author }}</p>
@@ -29,6 +37,25 @@
         </div>
       </div>
     </section>
+
+    <!-- Did You Know Us Section -->
+    <section class="did-you-know">
+      <div class="info-section">
+        <h2>Did you know us?</h2>
+        <p>
+          We are about books and our purpose is to show you the book that can change your life or distract you from the real world in a better one. 
+          BWorld works with the most popular publishers just for your delight. 
+          If you are about books, you must subscribe to our newsletter.
+        </p>
+        <form class="subscribe-form">
+          <input type="text" placeholder="Your name" class="input-field" />
+          <input type="email" placeholder="Your e-mail" class="input-field" />
+          <button type="submit" class="subscribe-btn">Subscribe</button>
+        </form>
+      </div>
+      <div class="map-section">
+        <img src="/assets/images/Map.png" alt="Map of BWorld locations" />
+      </div>
+    </section>
   </div>
 </div>
-  
