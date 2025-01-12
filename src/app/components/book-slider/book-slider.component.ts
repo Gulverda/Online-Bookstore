@@ -13,8 +13,8 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   @Input() books: Book[] = [];
   visibleBooks: Book[] = [];
   currentIndex: number = 0;
-  visibleCount: number = 1; // Always show 1 book at a time
-
+  visibleCount: number = 1; // Always show 1 book at a time, not 4
+  
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
@@ -31,12 +31,11 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   }
 
   handleResize() {
-    // No need to change visibleCount since it's always 1, just update visible books
     this.updateVisibleBooks();
   }
 
   next() {
-    if (this.currentIndex < this.books.length - 1) {
+    if (this.currentIndex < 3) {
       this.currentIndex++;
     } else {
       this.currentIndex = 0; // Loop back to start
@@ -48,13 +47,15 @@ export class BookSliderComponent implements OnInit, OnDestroy {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     } else {
-      this.currentIndex = this.books.length - 1; // Loop to the end
+      this.currentIndex = 3; // Loop to the end of the first 4 books
     }
     this.updateVisibleBooks();
   }
 
   updateVisibleBooks() {
-    this.visibleBooks = this.books.slice(this.currentIndex, this.currentIndex + this.visibleCount);
+    // Only show the first 4 books, based on current index
+    const maxBooksToShow = 4;
+    this.visibleBooks = this.books.slice(0, maxBooksToShow).slice(this.currentIndex, this.currentIndex + 1); // Show only 1 book at a time
   }
 
   isAtStart(): boolean {
@@ -62,6 +63,10 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   }
 
   isAtEnd(): boolean {
-    return this.currentIndex >= this.books.length - 1;
+    return this.currentIndex >= 3; // End after the 4th book
+  }
+  
+  getLineClass(index: number): string {
+    return index === this.currentIndex ? 'line active' : 'line'; // Add 'active' class for the selected slide
   }
 }

@@ -13,14 +13,14 @@
   
     <!-- Book Listings -->
     <section class="books-section">
-      <h2>Selected for You</h2>
+      <h2 class="book_section_title">Selected for You</h2>
       <div class="books-list">
         <div *ngFor="let book of books" class="book-card" (click)="viewDetails(+book.id)"> 
             <img [src]="book.imageUrl" alt="book cover" class="book-image" />
           <div class="book-info">
-            <h3>{{ book.title }}</h3>
-            <p>by {{ book.author }}</p>
-            <p>${{ book.price }}</p>
+            <h3 class="title">{{ book.title }}</h3>
+            <p class="author">by {{ book.author }}</p>
+            <p class="price">${{ book.price }}</p>
           </div>
           <button class="add-to-cart-btn">
             <img src="/assets/images/Cart.svg" alt="">

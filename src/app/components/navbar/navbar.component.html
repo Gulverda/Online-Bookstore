@@ -25,7 +25,7 @@
   <!-- Right Section -->
   <div class="navbar-right" [class.show]="menuOpen">
     <a href="/cart">
-      <i class="material-icons cart-icon">shopping_cart</i>
+      <img src="/assets/images/Fav.svg" alt="">
     </a>
 
     <ng-container *ngIf="authService.getCurrentUser(); else login">
@@ -39,7 +39,7 @@
 
     <ng-template #login>
       <a href="/auth">
-        <i class="material-icons user-icon">account_circle</i>
+        <img src="/assets/images/Profile.svg" alt="">
       </a>
     </ng-template>
   </div>
