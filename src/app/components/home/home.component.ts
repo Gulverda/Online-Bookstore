@@ -4,11 +4,12 @@ import { BookService } from '../../services/book.service';
 import { Router } from '@angular/router';  // Import Router
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BookSliderComponent } from '../book-slider/book-slider.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, BookSliderComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })

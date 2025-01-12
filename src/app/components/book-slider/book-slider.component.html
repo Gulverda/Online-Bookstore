@@ -1,0 +1,33 @@
+<div class="book-slider">
+    <div class="slider-container">
+      <!-- Display one book at a time based on visibleBooks -->
+      <div *ngFor="let book of visibleBooks" class="slider-item">
+        <div class="book-details">
+          <h3 class="book-title">{{ book.title }}</h3>
+          <p class="book-author">by {{ book.author }}</p>
+          <p class="book-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est possimus sequi obcaecati sit labore dicta architecto necessitatibus consequuntur nesciunt dolor ratione dolorem corrupti voluptas corporis, nihil, culpa impedit eligendi?</p>
+          <button class="add-to-cart-btn">
+            <img src="/assets/images/Cart.svg" alt="Add to Cart" />
+            Add to Cart
+          </button>
+        </div>
+        <div class="img_with_discount">
+          <img [src]="book.imageUrl" alt="{{ book.title }} cover" class="book-image" />
+          <p class="book-discount">AUTOGRAPHED BOOKS + 30% DISCOUNT</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Navigation buttons -->
+    <div class="navigation_button">
+      <button 
+        class="prev-btn" 
+        [disabled]="isAtStart()" 
+        (click)="prev()">&#8592;</button>
+      <button 
+        class="next-btn" 
+        [disabled]="isAtEnd()" 
+        (click)="next()">&#8594;</button>
+    </div>
+  </div>
+  

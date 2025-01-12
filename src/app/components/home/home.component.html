@@ -1,15 +1,8 @@
-<div class="home-container">
+<div class="center_container">
+  <div class="home-container">
     <!-- Author of the Week Section -->
-    <section class="author-section">
-      <h1>Eric-Emmanuel Schmitt</h1>
-      <div class="author-content">
-        <div class="author-info">
-          <p>Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes...</p>
-          <button class="view-books-btn">View His Books</button>
-        </div>
-        <img src="path/to/book-image.jpg" alt="Author's Book" />
-      </div>
-    </section>
+    <app-book-slider [books]="books"></app-book-slider>
+    
   
     <!-- Features Section -->
     <section class="features">
@@ -28,10 +21,14 @@
             <h3>{{ book.title }}</h3>
             <p>by {{ book.author }}</p>
             <p>${{ book.price }}</p>
-            <button class="add-to-cart-btn">Add to Cart</button>
           </div>
+          <button class="add-to-cart-btn">
+            <img src="/assets/images/Cart.svg" alt="">
+            Add to Cart
+          </button>
         </div>
       </div>
     </section>
   </div>
+</div>
   
