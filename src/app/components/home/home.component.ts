@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book.model';
 import { BookService } from '../../services/book.service';
-import { Router } from '@angular/router';  // Import Router
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BookSliderComponent } from '../book-slider/book-slider.component';
@@ -18,16 +18,19 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private router: Router  // Inject Router service
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.books = this.bookService.getBooks();
   }
 
-  // Method to navigate to book details page
-  viewDetails(bookId: number): void {
-    console.log('View details for book ID:', bookId);
-    this.router.navigate(['/book', bookId]);  // Navigate to the book-details page
+  addToCart(book: Book): void {
+    this.bookService.addToCart(book);
+    alert(`${book.title} added to your cart!`);
+  }
+
+  viewDetails(bookId: string): void {
+    this.router.navigate(['/book', bookId]);
   }
 }

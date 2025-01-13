@@ -2,25 +2,28 @@ import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angul
 import { Book } from '../../models/book.model'; // Adjust the path as per your project structure
 import { CommonModule } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
+import { BookService } from '../../services/book.service'; // Fixed import to follow naming conventions
 
 @Component({
   selector: 'app-book-slider',
   imports: [CommonModule],
   templateUrl: './book-slider.component.html',
-  styleUrls: ['./book-slider.component.css']
+  styleUrls: ['./book-slider.component.css'],
 })
 export class BookSliderComponent implements OnInit, OnDestroy {
   @Input() books: Book[] = [];
   visibleBooks: Book[] = [];
   currentIndex: number = 0;
-  visibleCount: number = 1; // Always show 1 book at a time, not 4
-  
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private bookService: BookService // Injected BookService for cart functionality
+  ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.updateVisibleBooks();
-      window.addEventListener('resize', this.handleResize.bind(this)); // Listen for window resize
+      window.addEventListener('resize', this.handleResize.bind(this));
     }
   }
 
@@ -35,10 +38,10 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    if (this.currentIndex < 3) {
+    if (this.currentIndex < this.books.length - 1) {
       this.currentIndex++;
     } else {
-      this.currentIndex = 0; // Loop back to start
+      this.currentIndex = 0; // Loop back to the start
     }
     this.updateVisibleBooks();
   }
@@ -47,15 +50,13 @@ export class BookSliderComponent implements OnInit, OnDestroy {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     } else {
-      this.currentIndex = 3; // Loop to the end of the first 4 books
+      this.currentIndex = this.books.length - 1; // Loop back to the last book
     }
     this.updateVisibleBooks();
   }
 
   updateVisibleBooks() {
-    // Only show the first 4 books, based on current index
-    const maxBooksToShow = 4;
-    this.visibleBooks = this.books.slice(0, maxBooksToShow).slice(this.currentIndex, this.currentIndex + 1); // Show only 1 book at a time
+    this.visibleBooks = [this.books[this.currentIndex]]; // Show only the book at the current index
   }
 
   isAtStart(): boolean {
@@ -63,10 +64,15 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   }
 
   isAtEnd(): boolean {
-    return this.currentIndex >= 3; // End after the 4th book
+    return this.currentIndex === this.books.length - 1;
   }
-  
+
   getLineClass(index: number): string {
-    return index === this.currentIndex ? 'line active' : 'line'; // Add 'active' class for the selected slide
+    return index === this.currentIndex ? 'line active' : 'line';
+  }
+
+  addToCart(book: Book): void {
+    this.bookService.addToCart(book);
+    alert(`${book.title} added to your cart!`);
   }
 }

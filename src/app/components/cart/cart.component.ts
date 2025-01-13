@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../../services/book.service';
-import { Book } from '../../models/book.model'; // Ensure the model is imported
+import { CartService } from '../../services/cart.service';
+import { Book } from '../../models/book.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,22 +12,36 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartItems: Book[] = []; // Cart items will be of type Book
+  cartItems: { book: Book; quantity: number }[] = [];
 
-  constructor(private bookService: BookService) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.loadCart();
   }
 
   loadCart(): void {
-    this.cartItems = this.bookService.getCart(); // Fetch the current cart items
+    this.cartItems = this.cartService.getCart();
   }
 
-  removeItem(id: string): void {
+  increaseQuantity(bookId: number): void {
+    this.cartService.updateCartQuantity(bookId, 1);
+    this.loadCart();
+  }
+
+  decreaseQuantity(bookId: number): void {
+    this.cartService.updateCartQuantity(bookId, -1);
+    this.loadCart();
+  }
+
+  removeItem(bookId: number): void {
     if (confirm('Are you sure you want to remove this item from your cart?')) {
-      this.bookService.removeFromCart(id); // Remove the item by its ID
-      this.loadCart(); // Refresh the cart items after removal
+      this.cartService.removeFromCart(bookId);
+      this.loadCart();
     }
+  }
+
+  calculateTotal(): number {
+    return this.cartService.calculateTotal();
   }
 }

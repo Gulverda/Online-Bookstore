@@ -10,8 +10,8 @@
           <h3 class="book-title">{{ book.title }}</h3>
           <p class="book-author">by {{ book.author }}</p>
           <p class="book-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem est possimus sequi obcaecati sit labore dicta architecto necessitatibus consequuntur nesciunt dolor ratione dolorem corrupti voluptas corporis, nihil, culpa impedit eligendi?</p>
-          <button class="add-to-cart-btn">
-            <img src="/assets/images/Cart.svg" alt="Add to Cart" />
+          <button class="add-to-cart-btn" (click)="addToCart(book)">
+            <img src="/assets/images/Cart.svg" alt="">
             Add to Cart
           </button>
         </div>

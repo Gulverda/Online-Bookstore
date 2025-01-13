@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book.model';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root',
@@ -154,7 +155,7 @@ export class BookService {
     // Add more books as needed
   ];
 
-  private cart: Book[] = [];
+  constructor(private cartService: CartService) {}
 
   getBooks(): Book[] {
     return this.books;
@@ -168,15 +169,8 @@ export class BookService {
     return this.books.filter((book) => book.category === category);
   }
 
-  getCart(): Book[] {
-    return [...this.cart];
-  }
-
+  // For adding to the cart
   addToCart(book: Book): void {
-    this.cart.push(book);
-  }
-
-  removeFromCart(id: string): void {
-    this.cart = this.cart.filter((book) => book.id !== id);
+    this.cartService.addToCart(book);
   }
 }
