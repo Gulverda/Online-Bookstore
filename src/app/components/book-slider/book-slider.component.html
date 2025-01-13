@@ -25,7 +25,15 @@
 
   <!-- Navigation buttons -->
   <div class="navigation_button">
-    <button class="prev-btn" [disabled]="isAtStart()" (click)="prev()">&#8592;</button>
-    <button class="next-btn" [disabled]="isAtEnd()" (click)="next()">&#8594;</button>
+    <button class="prev-btn" [disabled]="isAtStart()" (click)="prev()">
+      <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.99341 15.0364L0.983686 8.02669L7.99341 1.01697" stroke="#937DC2" stroke-width="1.00139" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>        
+    </button>
+    <button class="next-btn" [disabled]="isAtEnd()" (click)="next()">
+      <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.06128 1.02133L8.071 8.03105L1.06128 15.0408" stroke="#937DC2" stroke-width="1.00139" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>        
+    </button>
   </div>
 </div>
