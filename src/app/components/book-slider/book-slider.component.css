@@ -152,6 +152,12 @@
 }
 
 @media (max-width: 768px) {
+    .book-image,
+    .book-title,
+    .book-description{
+        max-width: 100%;
+    }
+
     .book-title {
         font-size: 36px;
     }
