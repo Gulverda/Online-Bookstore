@@ -17,20 +17,34 @@
       <h1>{{ book.title }}</h1>
       <p class="author">{{ book.author }}</p>
       <div class="rating">
-        <span class="stars">⭐⭐⭐⭐</span> <span>{{ book.rating }}</span>
+        <!-- Full stars -->
+        <span *ngFor="let star of [].constructor(fullStars); let i = index">
+          <img src="/assets/images/full-star.png" alt="Full Star" class="star" />
+        </span>
+
+        <!-- Half star -->
+        <span *ngIf="halfStars">
+          <img src="/assets/images/half-star.png" alt="Half Star" class="star" />
+        </span>
+
+        <!-- Empty stars -->
+        <span *ngFor="let star of [].constructor(emptyStars); let i = index">
+          <img src="/assets/images/empty-star.png" alt="Empty Star" class="star" />
+        </span>
+
+        <span>{{ book.rating }}</span>
       </div>
       <h2 class="price">${{ book.price }}</h2>
       <p class="description">{{ book.description }}</p>
 
       <div class="quantity-selector">
-        <button (click)="decreaseQuantity()">-</button>
+        <button (click)="decreaseQuantity()" class="minus">-</button>
         <span>{{ quantity }}</span>
-        <button (click)="increaseQuantity()">+</button>
+        <button (click)="increaseQuantity()" class="plus">+</button>
       </div>
 
       <div class="actions">
         <button class="add-to-cart-btn">Add to Cart</button>
-        <button class="favorite-btn">Favorite</button>
       </div>
 
       <div class="details">

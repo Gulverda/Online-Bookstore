@@ -23,6 +23,11 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription | undefined;
   quantity: number = 1;
 
+
+  fullStars: number = 0;
+  halfStars: number = 0;
+  emptyStars: number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -57,6 +62,9 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       this.book = book;
       this.similarBooks = await this.bookService.getSimilarBooks(book.category);
       this.reviews = await this.reviewService.getReviews(bookId);
+      
+      // Calculate stars after book details are loaded
+      this.calculateStars(this.book.rating);
     } catch (error) {
       console.error('Error loading book details:', error);
     }
@@ -93,5 +101,11 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       this.cartService.addToCart(this.book, this.quantity);
       alert(`${this.book.title} added to cart!`);
     }
+  }
+
+  calculateStars(rating: number): void {
+    this.fullStars = Math.floor(rating);
+    this.halfStars = rating % 1 >= 0.5 ? 1 : 0;
+    this.emptyStars = 5 - this.fullStars - this.halfStars;
   }
 }
