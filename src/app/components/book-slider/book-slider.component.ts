@@ -14,6 +14,8 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   @Input() books: Book[] = [];
   visibleBooks: Book[] = [];
   currentIndex: number = 0;
+  totalBooksToDisplay: number = 4; // Total books to display (4 books)
+  booksPerPage: number = 1; // Show 1 book per page
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -38,7 +40,7 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    if (this.currentIndex < this.books.length - 1) {
+    if (this.currentIndex < this.totalBooksToDisplay - 1) {
       this.currentIndex++;
     } else {
       this.currentIndex = 0; // Loop back to the start
@@ -50,7 +52,7 @@ export class BookSliderComponent implements OnInit, OnDestroy {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     } else {
-      this.currentIndex = this.books.length - 1; // Loop back to the last book
+      this.currentIndex = this.totalBooksToDisplay - 1; // Loop back to the last book
     }
     this.updateVisibleBooks();
   }
@@ -64,7 +66,7 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   }
 
   isAtEnd(): boolean {
-    return this.currentIndex === this.books.length - 1;
+    return this.currentIndex === this.totalBooksToDisplay - 1;
   }
 
   getLineClass(index: number): string {
