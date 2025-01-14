@@ -42,6 +42,7 @@
   }
 
   .search_input_and_icon{
+    width: 100%;
     position: relative;
   }
 
@@ -110,12 +111,11 @@
     .navbar-center,
     .navbar-right {
       display: none;
-      flex-direction: column;
       width: 100%;
+      justify-content: center;
       text-align: center;
       background-color: #ffffff;
       padding: 1rem 0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       order: 2; /* Ensure the navbar items come after the burger menu */
     }
 
@@ -134,10 +134,14 @@
     }
 
     .search-input {
-      width: 200px;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      width: 100%;
+    }
+
+    .search-dropdown {
+      top: 200px;
+      left: 0;
+      transform: translate(0, 0);
+      width: 100%;
     }
   }
 }
@@ -168,10 +172,11 @@
 
 .search-dropdown {
   position: absolute;
+  width: 400px;
   top: 4rem;
   left: 50%;
-  transform: translate(-50%, 0);
-  width: 50%;
+  transform: translate(-53%, 0);
+  /* width: 50%; */
   max-height: 300px;
   overflow-y: auto;
   background-color: #fff;
