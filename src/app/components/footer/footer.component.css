@@ -1,0 +1,136 @@
+.footer_center{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #937DC2;
+}
+
+.footer {
+    color: #fff;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    width: 100%;
+  }
+  
+  .footer-content {
+    margin: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .footer-section-social{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .footer-section h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 5px;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 200;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .logo h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .social-icons a {
+    margin-right: 10px;
+  }
+  
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .request-call {
+    font-size: 14px;
+    font-weight: 200;
+    max-width: 200px;
+  }
+  
+  .request-call-btn {
+    background-color: transparent;
+    color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+  }
+  
+  .request-call-btn:hover {
+    background-color: #9b79eb;
+    border: 1px solid #9b79eb;
+  }
+  
+  .payment-icons img {
+    margin-top: 20px;
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    border-top: 1px solid #fff;
+    padding-top: 10px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .footer-section-social {
+      flex: 1;
+      width: 100%;
+    }
+    .footer-content {
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-section {
+      flex: 1;
+    }
+  
+    .footer-section-social {
+      flex-direction: row;
+    }
+    
+  }
+  

@@ -1,48 +1,50 @@
-<nav class="navbar">
-  <div class="logo_burger">
-    <a href="/">
-      <div class="navbar-left">
-        <img src="/assets/images/Logo.png" alt="Bookstore">
-      </div>
-    </a>
-  
-    <!-- Burger menu for smaller screens -->
-    <button class="burger-menu" (click)="toggleMenu()">
-      <i class="material-icons">menu</i>
-    </button>
-  </div>
-
-  <!-- Center Section -->
-  <div class="navbar-center" [class.show]="menuOpen">
-    <input
-      type="text"
-      placeholder="Type any book here"
-      class="search-input"
-    />
-    <button class="search-button">
-      <i class="material-icons">search</i>
-    </button>
-  </div>
-
-  <!-- Right Section -->
-  <div class="navbar-right" [class.show]="menuOpen">
-    <a href="/cart">
-      <img src="/assets/images/Fav.svg" alt="">
-    </a>
-
-    <ng-container *ngIf="authService.getCurrentUser(); else login">
-      <div class="logged-in">
-        <span>{{ authService.getCurrentUser()?.name }}</span>
-        <a href="/auth" (click)="logout()">
-          <i class="material-icons">exit_to_app</i>
-        </a>
-      </div>
-    </ng-container>
-
-    <ng-template #login>
-      <a href="/auth">
-        <img src="/assets/images/Profile.svg" alt="">
+<div class="navbar_center">
+  <nav class="navbar">
+    <div class="logo_burger">
+      <a href="/">
+        <div class="navbar-left">
+          <img src="/assets/images/Logo.png" alt="Bookstore">
+        </div>
       </a>
-    </ng-template>
-  </div>
-</nav>
+    
+      <!-- Burger menu for smaller screens -->
+      <button class="burger-menu" (click)="toggleMenu()">
+        <i class="material-icons">menu</i>
+      </button>
+    </div>
+  
+    <!-- Center Section -->
+    <div class="navbar-center" [class.show]="menuOpen">
+      <input
+        type="text"
+        placeholder="Type any book here"
+        class="search-input"
+      />
+      <button class="search-button">
+        <i class="material-icons">search</i>
+      </button>
+    </div>
+  
+    <!-- Right Section -->
+    <div class="navbar-right" [class.show]="menuOpen">
+      <a href="/cart">
+        <img src="/assets/images/Fav.svg" alt="">
+      </a>
+  
+      <ng-container *ngIf="authService.getCurrentUser(); else login">
+        <div class="logged-in">
+          <span>{{ authService.getCurrentUser()?.name }}</span>
+          <a href="/auth" (click)="logout()">
+            <i class="material-icons">exit_to_app</i>
+          </a>
+        </div>
+      </ng-container>
+  
+      <ng-template #login>
+        <a href="/auth">
+          <img src="/assets/images/Profile.svg" alt="">
+        </a>
+      </ng-template>
+    </div>
+  </nav>
+</div>
