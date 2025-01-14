@@ -8,28 +8,33 @@ import { Book } from '../models/book.model';
 export class CartService {
   private cart: { book: Book; quantity: number }[] = [];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.loadCartFromStorage();
+  }
 
   addToCart(book: Book, quantity: number = 1): void {
     const existingItem = this.cart.find((item) => item.book.id === book.id);
-  
+
     if (existingItem) {
-      existingItem.quantity += quantity; // Update quantity if the item already exists
+      existingItem.quantity += quantity;
     } else {
-      this.cart.push({ book, quantity }); // Add a new item to the cart
+      this.cart.push({ book, quantity });
     }
-  
+
+    this.saveCartToStorage();
     console.log(`${quantity} of ${book.title} added to the cart.`);
   }
-  
 
   getCart(): { book: Book; quantity: number }[] {
-    this.loadCartFromStorage();
     return this.cart;
   }
 
+  getCartQuantity(): number {
+    return this.cart.reduce((total, item) => total + item.quantity, 0);
+  }
+
   updateCartQuantity(bookId: number, change: number): void {
-    const item = this.cart.find(cartItem => cartItem.book.id === bookId.toString());
+    const item = this.cart.find((cartItem) => cartItem.book.id === bookId.toString());
     if (item) {
       item.quantity += change;
       if (item.quantity <= 0) {
@@ -40,7 +45,7 @@ export class CartService {
   }
 
   removeFromCart(bookId: number): void {
-    this.cart = this.cart.filter(cartItem => cartItem.book.id !== bookId.toString());
+    this.cart = this.cart.filter((cartItem) => cartItem.book.id !== bookId.toString());
     this.saveCartToStorage();
   }
 

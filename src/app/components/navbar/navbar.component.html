@@ -29,6 +29,9 @@
     <div class="navbar-right" [class.show]="menuOpen">
       <a href="/cart">
         <img src="/assets/images/Fav.svg" alt="">
+        <span class="cart-badge" *ngIf="cartService.getCartQuantity() > 0">
+          {{ cartService.getCartQuantity() }}
+        </span>
       </a>
   
       <ng-container *ngIf="authService.getCurrentUser(); else login">

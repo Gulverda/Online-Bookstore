@@ -26,18 +26,18 @@ export class CartComponent implements OnInit {
 
   increaseQuantity(bookId: number): void {
     this.cartService.updateCartQuantity(bookId, 1);
-    this.loadCart(); // Reload the cart to reflect changes
+    this.loadCart();
   }
 
   decreaseQuantity(bookId: number): void {
     this.cartService.updateCartQuantity(bookId, -1);
-    this.loadCart(); // Reload the cart to reflect changes
+    this.loadCart();
   }
 
   removeItem(bookId: number): void {
     if (confirm('Are you sure you want to remove this item from your cart?')) {
       this.cartService.removeFromCart(bookId);
-      this.loadCart(); // Reload the cart to reflect changes
+      this.loadCart();
     }
   }
 
