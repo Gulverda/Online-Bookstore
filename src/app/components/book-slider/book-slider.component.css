@@ -48,12 +48,18 @@
     margin-top: 20px;
     color: #fff;
     padding: 15px 20px;
+    border-radius: 2px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    transition: all 0.3s;
+    background-color: #5534a5;
 }
 
 .book-image {
