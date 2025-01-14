@@ -205,4 +205,10 @@ export class BookService {
   addToCart(book: Book): void {
     this.cartService.addToCart(book);
   }
+
+  searchBooksByName(searchTerm: string): Book[] {
+    return this.books.filter((book) =>
+      book.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }  
 }

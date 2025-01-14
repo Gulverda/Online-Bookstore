@@ -3,37 +3,48 @@
     <div class="logo_burger">
       <a href="/">
         <div class="navbar-left">
-          <img src="/assets/images/Logo.png" alt="Bookstore">
+          <img src="/assets/images/Logo.png" alt="Bookstore" />
         </div>
       </a>
-    
+
       <!-- Burger menu for smaller screens -->
       <button class="burger-menu" (click)="toggleMenu()">
         <i class="material-icons">menu</i>
       </button>
     </div>
-  
+
     <!-- Center Section -->
     <div class="navbar-center" [class.show]="menuOpen">
       <input
         type="text"
         placeholder="Type any book here"
         class="search-input"
-      />
+        [(ngModel)]="searchQuery"
+        (input)="onSearchChange()" />
       <button class="search-button">
         <i class="material-icons">search</i>
       </button>
+
+      <!-- Dropdown for book list -->
+      <div *ngIf="filteredBooks.length > 0 && (searchQuery || menuOpen)" class="search-dropdown">
+        <ul>
+          <li *ngFor="let book of filteredBooks" (click)="viewDetails(book.id)">
+            <img [src]="book.imageUrl" alt="{{ book.title }}" class="book-thumbnail" />
+            <span>{{ book.title }}</span>
+          </li>
+        </ul>
+      </div>
     </div>
-  
+
     <!-- Right Section -->
     <div class="navbar-right" [class.show]="menuOpen">
       <a href="/cart">
-        <img src="/assets/images/Fav.svg" alt="">
+        <img src="/assets/images/Fav.svg" alt="" />
         <span class="cart-badge" *ngIf="cartService.getCartQuantity() > 0">
           {{ cartService.getCartQuantity() }}
         </span>
       </a>
-  
+
       <ng-container *ngIf="authService.getCurrentUser(); else login">
         <div class="logged-in">
           <span>{{ authService.getCurrentUser()?.name }}</span>
@@ -42,10 +53,10 @@
           </a>
         </div>
       </ng-container>
-  
+
       <ng-template #login>
         <a href="/auth">
-          <img src="/assets/images/Profile.svg" alt="">
+          <img src="/assets/images/Profile.svg" alt="" />
         </a>
       </ng-template>
     </div>

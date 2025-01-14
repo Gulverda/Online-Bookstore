@@ -147,3 +147,45 @@
   justify-content: center;
   align-items: center;
 }
+
+
+
+
+.search-dropdown {
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 50%;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.search-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-dropdown li {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-dropdown li:hover {
+  background-color: #f1f1f1;
+}
+
+.book-thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 8px;
+  border-radius: 4px;
+}
