@@ -67,6 +67,6 @@ export class NavbarComponent implements OnInit {
    */
   viewDetails(bookId: string): void {
     // Navigate to the book details page using the book ID
-    this.router.navigate(['/book-details', bookId]);  // Assumes a route with book details
+    this.router.navigate(['/book', bookId]);  // Assumes a route with book details
   }
 }

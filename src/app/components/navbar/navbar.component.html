@@ -15,7 +15,8 @@
 
     <!-- Center Section -->
     <div class="navbar-center" [class.show]="menuOpen">
-      <input
+      <div class="search_input_and_icon">
+        <input
         type="text"
         placeholder="Type any book here"
         class="search-input"
@@ -24,6 +25,7 @@
       <button class="search-button">
         <i class="material-icons">search</i>
       </button>
+      </div>
 
       <!-- Dropdown for book list -->
       <div *ngIf="filteredBooks.length > 0 && (searchQuery || menuOpen)" class="search-dropdown">
