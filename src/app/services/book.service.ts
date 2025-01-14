@@ -17,7 +17,10 @@ export class BookService {
       category: 'Fantasy',
       imageUrl: '/assets/books/lotr.png',
       rating: 4.9,
+      language: 'English',
+      printLength: 432,
       similarBooks: ['2', '3', '4'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [
         {
           reviewer: 'John Doe',
@@ -30,6 +33,7 @@ export class BookService {
           date: new Date('2022-03-15'),
         },
       ],
+      publicationDate: new Date('1954-07-29'),
     },
     {
       id: '2',
@@ -41,8 +45,12 @@ export class BookService {
       category: 'Fantasy',
       imageUrl: '/assets/books/the_two_towers.png',
       rating: 4.8,
+      language: 'English',
+      printLength: 352,
       similarBooks: ['1', '3', '4'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [],
+      publicationDate: new Date('1954-11-11'),
     },
     {
       id: '3',
@@ -54,7 +62,10 @@ export class BookService {
       category: 'Fantasy',
       imageUrl: '/assets/books/the_hobbit.png',
       rating: 4.7,
+      language: 'English/German',
+      printLength: 310,
       similarBooks: ['1', '2', '4'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [
         {
           reviewer: 'Sam Green',
@@ -62,6 +73,7 @@ export class BookService {
           date: new Date('2023-06-10'),
         },
       ],
+      publicationDate: new Date('1937-09-21'),
     },
     {
       id: '4',
@@ -73,7 +85,10 @@ export class BookService {
       category: 'Fantasy',
       imageUrl: '/assets/books/hp_tps.png',
       rating: 4.9,
+      language: 'English',
+      printLength: 320,
       similarBooks: ['1', '2', '3'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [
         {
           reviewer: 'Lucy Evans',
@@ -81,6 +96,7 @@ export class BookService {
           date: new Date('2023-07-05'),
         },
       ],
+      publicationDate: new Date('1997-06-26'),
     },
     {
       id: '5',
@@ -92,7 +108,10 @@ export class BookService {
       category: 'Fiction',
       imageUrl: '/assets/books/tcitr.png',
       rating: 4.5,
+      language: 'English/German',
+      printLength: 224,
       similarBooks: ['6', '7', '8'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [
         {
           reviewer: 'Michael Black',
@@ -100,6 +119,7 @@ export class BookService {
           date: new Date('2022-10-12'),
         },
       ],
+      publicationDate: new Date('1951-07-16'),
     },
     {
       id: '6',
@@ -111,7 +131,10 @@ export class BookService {
       category: 'Fiction',
       imageUrl: '/assets/books/tkm.png',
       rating: 4.8,
+      language: 'English',
+      printLength: 336,
       similarBooks: ['5', '7', '8'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [
         {
           reviewer: 'Emma White',
@@ -119,6 +142,7 @@ export class BookService {
           date: new Date('2021-09-20'),
         },
       ],
+      publicationDate: new Date('1960-07-11'),
     },
     {
       id: '7',
@@ -130,8 +154,12 @@ export class BookService {
       category: 'Dystopian',
       imageUrl: '/assets/books/1984.png',
       rating: 4.6,
+      language: 'English',
+      printLength: 328,
       similarBooks: ['5', '6', '8'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [],
+      publicationDate: new Date('1949-06-08'),
     },
     {
       id: '8',
@@ -143,7 +171,10 @@ export class BookService {
       category: 'Dystopian',
       imageUrl: '/assets/books/bnw.png',
       rating: 4.4,
+      language: 'English',
+      printLength: 288,
       similarBooks: ['5', '6', '7'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
       reviews: [
         {
           reviewer: 'William Black',
@@ -151,6 +182,7 @@ export class BookService {
           date: new Date('2023-04-11'),
         },
       ],
+      publicationDate: new Date('1932-10-01'),
     },
     // Add more books as needed
   ];

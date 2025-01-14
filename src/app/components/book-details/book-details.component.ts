@@ -6,6 +6,7 @@ import { ReviewService } from '../../services/review.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-book-details',
@@ -20,47 +21,77 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   reviews: string[] = [];
   newReview: string = '';
   private routeSub: Subscription | undefined;
+  quantity: number = 1;
 
   constructor(
     private route: ActivatedRoute,
+    private cartService: CartService,
     private bookService: BookService,
     private reviewService: ReviewService
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to route parameter changes
     this.routeSub = this.route.paramMap.subscribe((params) => {
       const bookId = params.get('id');
       if (bookId) {
-        this.loadBookDetails(bookId);  // Load book details whenever the route changes
+        this.loadBookDetails(bookId);
+      } else {
+        console.error('Invalid book ID in route parameters.');
       }
     });
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe from the route changes to avoid memory leaks
     if (this.routeSub) {
       this.routeSub.unsubscribe();
     }
   }
 
-  loadBookDetails(bookId: string): void {
-    // Fetch the current book details
-    this.book = this.bookService.getBookById(bookId);
-    
-    if (this.book) {
-      // Fetch similar books (exclude the current book)
-      this.similarBooks = this.bookService.getSimilarBooks(this.book.category);
-      // Fetch the reviews for the current book
-      this.reviews = this.reviewService.getReviews(bookId);
+  async loadBookDetails(bookId: string): Promise<void> {
+    try {
+      const book = await this.bookService.getBookById(bookId);
+      if (!book) {
+        console.error(`Book with ID ${bookId} not found.`);
+        return;
+      }
+      this.book = book;
+      this.similarBooks = await this.bookService.getSimilarBooks(book.category);
+      this.reviews = await this.reviewService.getReviews(bookId);
+    } catch (error) {
+      console.error('Error loading book details:', error);
     }
   }
 
-  addReview(): void {
+  async addReview(): Promise<void> {
     if (this.book && this.newReview.trim()) {
-      this.reviewService.addReview(this.book.id, this.newReview);
-      this.newReview = '';  // Clear the review input
-      this.reviews = this.reviewService.getReviews(this.book.id);  // Refresh the reviews list
+      if (this.newReview.length > 200) {
+        console.error('Review cannot exceed 200 characters.');
+        return;
+      }
+      try {
+        await this.reviewService.addReview(this.book.id, this.newReview);
+        this.reviews.push(this.newReview);
+        this.newReview = '';
+      } catch (error) {
+        console.error('Failed to add review:', error);
+      }
+    }
+  }
+
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  addToCart(): void {
+    if (this.book) {
+      this.cartService.addToCart(this.book, this.quantity);
+      alert(`${this.book.title} added to cart!`);
     }
   }
 }

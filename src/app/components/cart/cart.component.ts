@@ -26,22 +26,25 @@ export class CartComponent implements OnInit {
 
   increaseQuantity(bookId: number): void {
     this.cartService.updateCartQuantity(bookId, 1);
-    this.loadCart();
+    this.loadCart(); // Reload the cart to reflect changes
   }
 
   decreaseQuantity(bookId: number): void {
     this.cartService.updateCartQuantity(bookId, -1);
-    this.loadCart();
+    this.loadCart(); // Reload the cart to reflect changes
   }
 
   removeItem(bookId: number): void {
     if (confirm('Are you sure you want to remove this item from your cart?')) {
       this.cartService.removeFromCart(bookId);
-      this.loadCart();
+      this.loadCart(); // Reload the cart to reflect changes
     }
   }
 
   calculateTotal(): number {
-    return this.cartService.calculateTotal();
+    return this.cartItems.reduce(
+      (total, item) => total + item.book.price * item.quantity,
+      0
+    );
   }
 }

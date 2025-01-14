@@ -24,7 +24,7 @@
 <section class="books-section">
   <h2 class="book_section_title">Selected for You</h2>
   <div class="books-list">
-    <div *ngFor="let book of books" class="book-card">
+    <div *ngFor="let book of books" class="book-card" (click)="viewDetails(book.id)">
       <img [src]="book.imageUrl" alt="book cover" class="book-image" />
       <div class="book-info">
         <h3 class="title">{{ book.title }}</h3>

@@ -10,15 +10,18 @@ export class CartService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  addToCart(book: Book): void {
-    const existingItem = this.cart.find(item => item.book.id === book.id);
+  addToCart(book: Book, quantity: number = 1): void {
+    const existingItem = this.cart.find((item) => item.book.id === book.id);
+  
     if (existingItem) {
-      existingItem.quantity++;
+      existingItem.quantity += quantity; // Update quantity if the item already exists
     } else {
-      this.cart.push({ book, quantity: 1 });
+      this.cart.push({ book, quantity }); // Add a new item to the cart
     }
-    this.saveCartToStorage();
+  
+    console.log(`${quantity} of ${book.title} added to the cart.`);
   }
+  
 
   getCart(): { book: Book; quantity: number }[] {
     this.loadCartFromStorage();
