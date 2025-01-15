@@ -1,6 +1,14 @@
+.book_details_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .book-details {
-    font-family: Arial, sans-serif;
     padding: 20px;
+    width: 100%;
+    max-width: 1440px;
 }
 
 .breadcrumbs {
