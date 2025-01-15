@@ -23,6 +23,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription | undefined;
   quantity: number = 1;
 
+  selectedImage: string | undefined;  // New variable to hold selected image
 
   fullStars: number = 0;
   halfStars: number = 0;
@@ -62,28 +63,19 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       this.book = book;
       this.similarBooks = await this.bookService.getSimilarBooks(book.category);
       this.reviews = await this.reviewService.getReviews(bookId);
-      
+
       // Calculate stars after book details are loaded
       this.calculateStars(this.book.rating);
+
+      // Initialize selectedImage to the main image on load
+      this.selectedImage = book.imageUrl;
     } catch (error) {
       console.error('Error loading book details:', error);
     }
   }
 
-  async addReview(): Promise<void> {
-    if (this.book && this.newReview.trim()) {
-      if (this.newReview.length > 200) {
-        console.error('Review cannot exceed 200 characters.');
-        return;
-      }
-      try {
-        await this.reviewService.addReview(this.book.id, this.newReview);
-        this.reviews.push(this.newReview);
-        this.newReview = '';
-      } catch (error) {
-        console.error('Failed to add review:', error);
-      }
-    }
+  changeMainImage(imageUrl: string): void {
+    this.selectedImage = imageUrl;
   }
 
   increaseQuantity(): void {
