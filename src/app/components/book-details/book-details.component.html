@@ -45,7 +45,10 @@
         </div>
 
         <div class="actions">
-          <button class="add-to-cart-btn" (click)="addToCart()">Add to Cart</button>
+          <button class="add-to-cart-btn" (click)="addToCart()">
+            <img src="/assets/images/Cart.svg" alt="Cart icon" />
+            Add to Cart
+          </button>
         </div>
 
         <div class="details">
@@ -61,11 +64,14 @@
     <div class="collection" *ngIf="similarBooks.length > 0">
       <h2>Collection</h2>
       <div class="similar-books">
-        <div *ngFor="let similarBook of similarBooks" class="similar-book-card">
+        <div *ngFor="let similarBook of similarBooks" class="similar-book-card" (click)="viewDetails(similarBook.id)">
           <img [src]="similarBook.imageUrl" alt="{{ similarBook.title }}" />
           <h3>{{ similarBook.title }}</h3>
           <p>${{ similarBook.price }}</p>
-          <button (click)="addToCart()">Add to Cart</button>
+          <button (click)="addToCart()" class="add-to-cart-btn">
+            <img src="/assets/images/Cart.svg" alt="Cart icon" />
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

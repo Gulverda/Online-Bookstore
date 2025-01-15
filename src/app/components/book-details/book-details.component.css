@@ -95,14 +95,6 @@
     padding-bottom: 30px;
 }
 
-.add-to-cart-btn,
-.favorite-btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .add-to-cart-btn {
     background-color: #937dc2;
     max-width: 200px;
@@ -117,6 +109,11 @@
     gap: 10px;
     width: 100%;
     cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    transition: all 0.3s;
+    background-color: #5534a5;
 }
 
 .plus,
@@ -140,11 +137,6 @@
 .minus:hover {
     background-color: #937DC2;
     color: #fff;
-}
-
-.add-to-cart-btn:hover {
-    transition: all 0.3s;
-    background-color: #5534a5;
 }
 
 .details {
@@ -186,7 +178,6 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    align-items: center;
     width: 250px;
     padding: 10px;
     flex-shrink: 0;
@@ -209,20 +200,13 @@
     margin-bottom: 10px;
 }
 
-.similar-book-card button {
-    background-color: #937dc2;
+.similar-book-card .add-to-cart-btn {
     max-width: 250px;
-    margin-top: 20px;
-    color: #fff;
-    padding: 15px 20px;
-    border-radius: 2px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    cursor: pointer;
+}
+
+.similar-book-card button:hover {
+    transition: all 0.3s;
+    background-color: #5534a5;
 }
 
 @media screen and (max-width: 768px) {

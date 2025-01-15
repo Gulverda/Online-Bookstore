@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
-import { Book } from '../../models/book.model'; // Adjust the path as per your project structure
+import { Book } from '../../models/book.model'; 
 import { CommonModule } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
-import { BookService } from '../../services/book.service'; // Fixed import to follow naming conventions
+import { BookService } from '../../services/book.service';
 
 @Component({
   selector: 'app-book-slider',
@@ -14,24 +14,36 @@ export class BookSliderComponent implements OnInit, OnDestroy {
   @Input() books: Book[] = [];
   visibleBooks: Book[] = [];
   currentIndex: number = 0;
-  totalBooksToDisplay: number = 4; // Total books to display (4 books)
-  booksPerPage: number = 1; // Show 1 book per page
+  totalBooksToDisplay: number = 4; 
+  booksPerPage: number = 1; 
+
+  private autoMoveInterval: any;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private bookService: BookService // Injected BookService for cart functionality
+    private bookService: BookService
   ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.updateVisibleBooks();
       window.addEventListener('resize', this.handleResize.bind(this));
+
+      // Auto-move slider every 2-3 seconds
+      this.autoMoveInterval = setInterval(() => {
+        this.next();
+      }, 3000); 
     }
   }
 
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
       window.removeEventListener('resize', this.handleResize.bind(this));
+
+      // Clear the auto-move interval on destroy
+      if (this.autoMoveInterval) {
+        clearInterval(this.autoMoveInterval);
+      }
     }
   }
 

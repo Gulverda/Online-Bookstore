@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-details',
@@ -33,7 +34,8 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private cartService: CartService,
     private bookService: BookService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -99,5 +101,9 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     this.fullStars = Math.floor(rating);
     this.halfStars = rating % 1 >= 0.5 ? 1 : 0;
     this.emptyStars = 5 - this.fullStars - this.halfStars;
+  }
+
+  viewDetails(bookId: string): void {
+    this.router.navigate(['/book', bookId]);
   }
 }
