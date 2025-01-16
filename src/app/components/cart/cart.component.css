@@ -8,6 +8,8 @@
     padding: 20px;
     width: 100%;
     max-width: 1440px;
+    min-height: 70vh;
+    height: 100%;
 }
 
 .cart-container h2 {
@@ -161,6 +163,7 @@
         padding: 15px;
         width: 90%;
         max-width: 700px;
+        min-height: auto;
     }
 
     .cart-container li {

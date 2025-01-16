@@ -1,32 +1,48 @@
 <div class="cart_center">
   <div class="cart-container">
-    <h2>Your Cart</h2>
-    <ul *ngIf="cartItems.length > 0; else emptyCart">
-      <li *ngFor="let item of cartItems">
-        <img [src]="item.book.imageUrl" alt="{{ item.book.title }}" />
-        <div class="details">
-          <h3>{{ item.book.title }}</h3>
-          <p>Author: {{ item.book.author }}</p>
-          <p>Price: ${{ item.book.price }}</p>
-          <p>Quantity: {{ item.quantity }}</p>
-        </div>
-        <div class="actions">
-          <button (click)="decreaseQuantity(+item.book.id)" class="minus">-</button>
-          <button (click)="increaseQuantity(+item.book.id)" class="plus">+</button>
-          <button (click)="removeItem(+item.book.id)" class="remove">Remove</button>
-        </div>
-      </li>
-    </ul>
-  
-    <ng-template #emptyCart>
-      <p>Your cart is empty.</p>
-    </ng-template>
-  
-    <div class="cart-total" *ngIf="cartItems.length > 0">
-      <h3>Total: ${{ calculateTotal() }}</h3>
-      <button class="buy_btn">
-        Buy Now
-      </button>
+    <!-- Show Cart if Payment is Not Completed -->
+    <div *ngIf="!paymentSuccessful; else receiptTemplate">
+      <h2>Your Cart</h2>
+      <ul *ngIf="cartItems.length > 0; else emptyCart">
+        <li *ngFor="let item of cartItems">
+          <img [src]="item.book.imageUrl" alt="{{ item.book.title }}" />
+          <div class="details">
+            <h3>{{ item.book.title }}</h3>
+            <p>Author: {{ item.book.author }}</p>
+            <p>Price: ${{ item.book.price }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+          </div>
+          <div class="actions">
+            <button (click)="decreaseQuantity(+item.book.id)" class="minus">-</button>
+            <button (click)="increaseQuantity(+item.book.id)" class="plus">+</button>
+            <button (click)="removeItem(+item.book.id)" class="remove">Remove</button>
+          </div>
+        </li>
+      </ul>
+
+      <ng-template #emptyCart>
+        <p>Your cart is empty.</p>
+      </ng-template>
+
+      <div class="cart-total" *ngIf="cartItems.length > 0">
+        <h3>Total: ${{ calculateTotal() }}</h3>
+        <button class="buy_btn" (click)="handleBuyNow()">
+          Buy Now
+        </button>
+      </div>
     </div>
+
+    <!-- Show Receipt if Payment is Completed -->
+    <ng-template #receiptTemplate>
+      <h2>Payment Receipt</h2>
+      <p>Thank you for your purchase!</p>
+      <ul>
+        <li *ngFor="let item of cartItems">
+          <strong>{{ item.book.title }}</strong> - ${{ item.book.price }} x
+          {{ item.quantity }} = ${{ item.book.price * item.quantity }}
+        </li>
+      </ul>
+      <h3>Total: ${{ calculateTotal() }}</h3>
+    </ng-template>
   </div>
 </div>

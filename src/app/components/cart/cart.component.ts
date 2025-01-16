@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 import { Book } from '../../models/book.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +15,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
   cartItems: { book: Book; quantity: number }[] = [];
+  paymentSuccessful: boolean = false; // Track payment status
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -46,5 +53,15 @@ export class CartComponent implements OnInit {
       (total, item) => total + item.book.price * item.quantity,
       0
     );
+  }
+
+  handleBuyNow(): void {
+    if (this.authService.isLoggedIn()) {
+      alert('Payment successfully completed!');
+      this.paymentSuccessful = true; // Mark payment as successful
+    } else {
+      alert('You need to log in to proceed.');
+      this.router.navigate(['/login']); // Navigate to the login page
+    }
   }
 }
