@@ -121,13 +121,29 @@
 
 .cart-container .cart-total {
     margin-top: 20px;
-    text-align: center;
     font-size: 20px;
     font-weight: bold;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.cart-container .cart-total button{
+    background-color: #937DC2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.cart-container .cart-total button:hover {
+    background-color: #5534a5;
 }
 
 .cart-container .cart-total h3 {
-    color: #2575fc;
+    color: #333;
 }
 
 /* Empty Cart message */

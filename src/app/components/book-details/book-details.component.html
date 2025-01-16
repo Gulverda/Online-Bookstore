@@ -55,7 +55,7 @@
           <p><span>Author:</span> {{ book.author }}</p>
           <p><span>Language:</span> {{ book.language }}</p>
           <p><span>Print Length:</span> {{ book.printLength }} pages</p>
-          <p><span>Publication Date:</span> {{ book.publicationDate }}</p>
+          <p><span>Publication Date:</span> {{ book.publicationDate | date: 'yyyy-MM-dd' }}</p>
         </div>
       </div>
     </div>

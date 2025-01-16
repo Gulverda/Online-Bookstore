@@ -20,7 +20,7 @@ export class BookService {
       language: 'English',
       printLength: 432,
       similarBooks: ['2', '3', '4'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/lotr.png', '/assets/books/fw_ship.jpg'],
       reviews: [
         {
           reviewer: 'John Doe',
@@ -48,7 +48,7 @@ export class BookService {
       language: 'English',
       printLength: 352,
       similarBooks: ['1', '3', '4'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/the_two_towers.png', '/assets/books/twoTowers.jpg'],
       reviews: [],
       publicationDate: new Date('1954-11-11'),
     },
@@ -60,12 +60,12 @@ export class BookService {
       description: 'Bilbo Baggins, a hobbit, embarks on an adventure to help a group of dwarves reclaim their mountain home from a dragon.',
       releaseYear: 1937,
       category: 'Fantasy',
-      imageUrl: '/assets/books/the_hobbit.png',
+      imageUrl: '/assets/books/the_hobbit_one.png',
       rating: 4.7,
       language: 'English/German',
       printLength: 310,
       similarBooks: ['1', '2', '4'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/the_hobbit_one.png', '/assets/books/the_hobbit.png'],
       reviews: [
         {
           reviewer: 'Sam Green',
@@ -83,12 +83,12 @@ export class BookService {
       description: 'A young boy discovers that he is a wizard and attends Hogwarts School of Witchcraft and Wizardry.',
       releaseYear: 1997,
       category: 'Fantasy',
-      imageUrl: '/assets/books/hp_tps.png',
+      imageUrl: '/assets/books/hp_tps_one.png',
       rating: 4.9,
       language: 'English',
       printLength: 320,
       similarBooks: ['1', '2', '3'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/hp_tps_one.png', '/assets/books/hp_tps.png'],
       reviews: [
         {
           reviewer: 'Lucy Evans',
@@ -106,12 +106,12 @@ export class BookService {
       description: 'A young man reflects on his experiences and struggles with alienation, identity, and the complexities of life.',
       releaseYear: 1951,
       category: 'Fiction',
-      imageUrl: '/assets/books/tcitr.png',
+      imageUrl: '/assets/books/tcitr_one.png',
       rating: 4.5,
       language: 'English/German',
       printLength: 224,
       similarBooks: ['6', '7', '8'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/tcitr_one.png', '/assets/books/tcitr.png'],
       reviews: [
         {
           reviewer: 'Michael Black',
@@ -134,7 +134,7 @@ export class BookService {
       language: 'English',
       printLength: 336,
       similarBooks: ['5', '7', '8'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/tkm.png', '/assets/books/tkm.jpg'],
       reviews: [
         {
           reviewer: 'Emma White',
@@ -152,12 +152,12 @@ export class BookService {
       description: 'In a dystopian future, a totalitarian regime controls every aspect of life, and one man seeks to rebel against the oppressive system.',
       releaseYear: 1949,
       category: 'Dystopian',
-      imageUrl: '/assets/books/1984.png',
+      imageUrl: '/assets/books/1984_one.png',
       rating: 4.6,
       language: 'English',
       printLength: 328,
       similarBooks: ['5', '6', '8'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/1984_one.png', '/assets/books/1984.png'],
       reviews: [],
       publicationDate: new Date('1949-06-08'),
     },
@@ -174,7 +174,7 @@ export class BookService {
       language: 'English',
       printLength: 288,
       similarBooks: ['5', '6', '7'],
-      additionalImages: ['/assets/books/lotr.png', '/assets/books/lotr.png'],
+      additionalImages: ['/assets/books/bnw.png', '/assets/books/bnw.jpg'],
       reviews: [
         {
           reviewer: 'William Black',
@@ -207,8 +207,9 @@ export class BookService {
   }
 
   searchBooksByName(searchTerm: string): Book[] {
-    return this.books.filter((book) =>
-      book.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }  
+  return this.books.filter((book) =>
+    book.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
+
 }
